@@ -21,9 +21,23 @@ class Letters extends Controller {
 	 * @author Ed Finkler
 	 */
 	
-	public function list()
+	public function newest($count=10)
 	{
-		# code...
+		$count  = (int)$count;
+		
+		$result = $this->mletters->getMany($count);
+
+		if ($result !== false) {
+			$response->letters= $result;
+			$response->msg    = 'Retrieved newest posts';
+			$response->count  = count($result);
+			$this->_sendAsJSON($response, '200 OK');
+		} else {
+			$response->msg = 'There was a problem adding your post';
+			$this->_sendAsJSON($response, '500 Internal Server Error');
+		}
+		return;
+		
 	}
 	
 	
@@ -36,6 +50,7 @@ class Letters extends Controller {
 	 */
 	public function single($id)
 	{
+		echo "hi! you requested $id";
 		# code...
 	}
 	
@@ -48,8 +63,78 @@ class Letters extends Controller {
 	 */
 	public function add()
 	{
-		# code...
+		// Get the post data
+		$letter_json = $this->_cleanInput($this->input->post('letter'));
+		
+		if ($letter_json) {
+			$letter = json_decode($letter_json);
+		} else {
+			$response = new stdClass();
+			$response->msg = 'Input was invalid';
+			$this->_sendAsJSON($response, '400 Bad Request');
+			return;
+		}
+		
+		
+		$data = new stdClass();
+		$data->letter = $letter;
+		$data->ip     = $_SERVER['REMOTE_ADDR'];
+		$result = $this->mletters->add($data);
+		
+		if ($result !== false) {
+			$data = new stdClass();
+			$response->msg = 'Post added';
+			$response->id  = $result;
+			$this->_sendAsJSON($response, '200 OK');
+		} else {
+			$data = new stdClass();
+			$response->msg = 'There was a problem adding your post';
+			$this->_sendAsJSON($response, '500 Internal Server Error');
+		}
+		return;
 	}
+	
+	
+	
+	
+	public function favorite($id)
+	{
+		$data = new stdClass();
+		$data->id = (int)$id;
+		$data->ip = $_SERVER['REMOTE_ADDR'];
+
+		$result = $this->mletters->favorite($data);
+		
+		if ($result !== false) {
+			$data = new stdClass();
+			$response->msg = 'Favorited post';
+			$response->favorite_count = $result;
+			$this->_sendAsJSON($response, '200 OK');
+		} else {
+			$data = new stdClass();
+			$response->msg = 'There was a problem favoriting your post';
+			$this->_sendAsJSON($response, '500 Internal Server Error');
+		}
+		return;
+	}
+	
+	
+	
+	/**
+	 * A really simple method to clean input of tags, encode special chars, etc
+	 *
+	 * @param string $input 
+	 * @return string
+	 * @author Ed Finkler
+	 */
+	private function _cleanInput($input)
+	{
+		$input = trim($input);
+		$input = strip_tags($input);
+		$input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
+		return $input;
+	}
+	
 	
 	
 	/**
@@ -67,6 +152,7 @@ class Letters extends Controller {
 		$this->output->set_header("HTTP/1.1 ".$status);
 		$this->output->set_header('Content-Type: application/json');
 		$this->output->set_output($rsJSON);
+		return;
 	}
 
 }
