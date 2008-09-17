@@ -10,7 +10,8 @@ class DZApi extends Controller {
 	
 	function index()
 	{
-		$this->load->view('welcome_message');
+		// $this->load->view('welcome_message');
+		
 	}
 	
 	
@@ -44,14 +45,56 @@ class DZApi extends Controller {
 	/**
 	 * Gets data for a single entry
 	 *
-	 * @param integet $id 
+	 * @param integer $id 
 	 * @return void
 	 * @author Ed Finkler
 	 */
 	public function single($id)
 	{
-		echo "hi! you requested $id";
-		# code...
+		$id  = (int)$id;
+		
+		$row = $this->mletters->getOne($id);
+
+		if ($row !== false) {
+
+			$data['row'] = $row;
+			$response->letter = $row;
+			$response->msg    = 'Retrieved post '.$id;
+			$response->count  = count($result);
+			$this->_sendAsJSON($response, '200 OK');
+
+		} else {
+			$response->msg = 'I couldn\'t find a random post';
+			$this->_sendAsJSON($response, '500 Internal Server Error');
+		}
+		return;
+	}
+	
+	
+	/**
+	 * Gets data for a single entry
+	 *
+	 * @param integet $id 
+	 * @return void
+	 * @author Ed Finkler
+	 */
+	public function random()
+	{
+		$row = $this->mletters->getRandom();
+
+		if ($row !== false) {
+
+			$data['row'] = $row;
+			$response->letter = $row;
+			$response->msg    = 'Retrieved random post';
+			$response->count  = count($result);
+			$this->_sendAsJSON($response, '200 OK');
+
+		} else {
+			$response->msg = 'I couldn\'t find post '.$id;
+			$this->_sendAsJSON($response, '500 Internal Server Error');
+		}
+		return;
 	}
 	
 	

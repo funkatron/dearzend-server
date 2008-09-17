@@ -29,6 +29,7 @@ class MLetters extends Model {
 	}
 	
 	
+	
 	/**
 	 * retrieve an array of entries
 	 *
@@ -102,7 +103,7 @@ class MLetters extends Model {
 	
 
 	/**
-	 * retrieve an array of entries
+	 * retrieve an array of entries. This could get ugly if the count gets big
 	 *
 	 * @param int $count default 10
 	 * @param string $sortby a column name
@@ -128,6 +129,20 @@ class MLetters extends Model {
 		} else {
 			return false;
 		}
+	}
+
+
+	/**
+	 * returns a random entry. This is wildly inefficient
+	 *
+	 * @return stdObj
+	 * @author Ed Finkler
+	 */
+	public function getRandom()
+	{
+		$results = $this->getAll();
+		$randkey = array_rand($results);
+		return $results[$randkey];
 	}
 
 

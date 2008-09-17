@@ -106,8 +106,8 @@ class Site extends Controller {
 
 
 		} else {
-			$response->msg = 'There was a problem adding your post';
-			$this->_sendAsJSON($response, '500 Internal Server Error');
+			$this->session->set_flashdata('flash_msg', 'I couldn\t find that post');
+			redirect('/site/index');
 		}
 		return;
 	}
