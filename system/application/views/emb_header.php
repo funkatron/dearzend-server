@@ -6,6 +6,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 	<title>Dear Zend</title>
+	
+	<link rel="alternate" type="application/rss+xml" title="Most recent posts" href="<?=site_url('/site/rss')?>" />
+	
+	
 	<script src="<?=site_url('/assets/jquery-1.2.6.js')?>" type="text/javascript" charset="utf-8"></script>
 	
 	<script type="text/javascript" charset="utf-8">

@@ -21,6 +21,20 @@ class Site extends Controller {
 		
 	}
 	
+	
+	public function rss()
+	{
+		$this->load->helper('xml');
+		
+		$data['encoding'] = 'utf-8';
+		$data['feed_name'] = 'DearZend.com';
+		$data['feed_url'] = 'http://dearend.com';
+		$data['page_language'] = 'en-us';
+		$data['posts'] = $this->mletters->getMany(20);    
+		header("Content-Type: application/rss+xml");
+		$this->load->view('rss', $data);
+	}
+	
 	function all()
 	{
 		

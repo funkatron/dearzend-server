@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteBase /~coj/dearzend.com
+RewriteCond $1 !^(index\.php|assets|images|css|robots\.txt)
+RewriteRule ^(.*)$ index.php/$1 [L]
