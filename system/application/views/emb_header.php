@@ -22,8 +22,6 @@
 			setTimeout(function() {
 				$('div.flash-msg').fadeOut(500);
 			}, 3000);
-			
-			
 		});
 	</script>
 	
@@ -33,5 +31,6 @@
 
 <body>
 	<a href="<?=site_url('')?>"><img id="banner" src="<?=site_url('/images/banner.png')?>" border="0" /></a>
+	<div id="tagline">Anonymously share your love and hate for The PHP Company</div>
 	
 	<div id="content">

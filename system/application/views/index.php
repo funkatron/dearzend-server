@@ -7,7 +7,7 @@
 		<h2 class="first">Write a note</h2>
 		<form id="letter-form" action="<?=site_url('/site/add')?>" method="POST">
 			<textarea name="letter" id="letter" rows="8" cols="40"></textarea>
-			<input type="submit" name="submit" value="Add" id="submit" />
+			We're working on the honor system. Be cool. <input type="submit" name="submit" value="Add" id="submit" />
 		</form>
 		
 		<h2>Recent notes</h2>

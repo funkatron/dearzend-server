@@ -15,8 +15,19 @@ a:link, a:active, a:visited {
 	height:127px;
 }
 
+#tagline {
+	display:block;
+	position:absolute;
+	left:115px;
+	top: 120px;
+	font-family: Arial, "MS Trebuchet", sans-serif;
+	font-size:16pt;
+	line-height:1.5em;
+	color:#CDC2A1;
+	letter-spacing: -1px;
+}
+
 #content {
-	display:absolute;
 	margin-top:160px;
 	margin-left:105px;
 	width:570px;
@@ -64,15 +75,14 @@ h1,h2,h3 {
 h2 {
 	font-size:24pt;
 }
-
 	h2.first {
 		margin-top:0;
 	}
 
+
 .letter {
 	padding:10px;
 }
-
 	.letter.even {
 		background:#382F28;
 	}
@@ -111,3 +121,14 @@ ul#recent-entries{
 	ul#recent-entries>li+li {
 		padding-top:1em;
 	}
+	
+	
+#footer {
+	margin-left:105px;
+	margin-top:10px;
+	width:570px;
+	text-align:center;
+	font-family: Arial, "MS Trebuchet", sans-serif;
+	color:#CDC2A1;
+	font-size:10pt;
+}
