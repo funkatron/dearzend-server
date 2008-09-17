@@ -1,8 +1,8 @@
 <?php
 
-class Letters extends Controller {
+class DZApi extends Controller {
 
-	function Letters()
+	function DZApi()
 	{
 		parent::Controller();	
 	}

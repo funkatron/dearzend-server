@@ -124,6 +124,11 @@ class Site extends Controller {
 		// Get the post data
 		$letter = $this->_cleanInput($this->input->post('letter'));
 		
+		if (empty($letter)) {
+			$this->session->set_flashdata('flash_msg', 'You need to enter something');
+			redirect('/site/index');
+		}
+		
 		$data = new stdClass();
 		$data->letter = $letter;
 		$data->ip     = $_SERVER['REMOTE_ADDR'];
