@@ -25,5 +25,8 @@
 				</li>
 			<?php endforeach ?>
 		</ul>
+		
+		<a href="<?=site_url('/site/all')?>">All notes &#x2192;</a> &nbsp;&nbsp;
+		<a href="<?=site_url('/site/favorites')?>">Popular notes &#x2192;</a>
 
 <? $this->load->view('emb_footer')?>		

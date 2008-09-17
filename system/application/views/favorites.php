@@ -10,7 +10,7 @@
 			<input type="submit" name="submit" value="Add" id="submit" />
 		</form> -->
 		
-		<h2>Favorite notes</h2>
+		<h2>Popular notes</h2>
 		<ul id="recent-entries">
 			<?php foreach ($rows as $row): ?>
 				<li class="letter">

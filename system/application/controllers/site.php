@@ -53,7 +53,7 @@ class Site extends Controller {
 		
 		$data['rows'] = $rows;
 		
-		$this->load->view('all', $data);
+		$this->load->view('favorites', $data);
 		
 	}
 	
